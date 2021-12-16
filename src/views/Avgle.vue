@@ -1,16 +1,22 @@
 <template>
   <div class="avgle">
-    <Avgle msg="Welcome to Your AV App"/>
+    <AvgleCategory />
+    <AvgleSearch />
   </div>
 </template>
 
 <script>
-import Avgle from '@/components/Avgle.vue'
+import AvgleCategory from "@/components/AvgleCategory.vue";
+import AvgleSearch from "@/components/AvgleSearch.vue";
 
 export default {
-  name: 'AvgleView',
+  name: "AvgleView",
   components: {
-   Avgle
-  }
-}
+    AvgleCategory,
+    AvgleSearch,
+  },
+  data() {
+    return {};
+  },
+};
 </script>
