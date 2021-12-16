@@ -8,7 +8,7 @@
 import Avgle from '@/components/Avgle.vue'
 
 export default {
-  name: 'Avgle',
+  name: 'AvgleView',
   components: {
    Avgle
   }
