@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Avgle from '../views/Avgle.vue'
+import AvgleCategoryView from '../views/AvgleCategoryView.vue'
+import AvgleSearchView from '../views/AvgleSearchView.vue'
 
 Vue.use(VueRouter)
 
@@ -20,10 +21,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/avgle',
-    name: 'Avgle',
-    component: Avgle
-  }
+    path: '/avgle-category',
+    name: 'Avgle 影片列表',
+    component: AvgleCategoryView
+  },
+  {
+    path: '/avgle-search',
+    name: 'Avgle 影片搜尋',
+    component: AvgleSearchView
+  },
 ]
 
 const router = new VueRouter({

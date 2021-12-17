@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link> |
-      <router-link to="/avgle">Avgle</router-link>
+      <router-link to="/avgle-category">Avgle 影片列表</router-link> |
+      <router-link to="/avgle-search">Avgle 影片搜尋</router-link>
     </div>
     <router-view />
   </div>
