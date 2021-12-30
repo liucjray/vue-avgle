@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :span="12">
+    <el-col :span="20">
       <el-tabs
         style="100%"
         type="card"
@@ -17,10 +17,13 @@
           <el-pagination
             style="width: 50%"
             background
-            layout="prev, pager, next"
+            layout="prev, pager, next, total, sizes, jumper"
             :page-size="videosLimit"
             :total="videosTotal"
-            @current-change="vidoePageClick"
+            :current-page="videosCurrentPage"
+            :page-sizes="[8, 16, 24, 32]"
+            @size-change="videoSizeChange"
+            @current-change="vidoePageChange"
             @prev-click="videosPrevClick"
             @next-click="videosNextClick"
           >
@@ -32,7 +35,7 @@
             element-loading-spinner="el-icon-loading"
             element-loading-background="rgba(0, 0, 0, 0.8)"
           >
-            <el-table-column prop="preview_url" label="預覽圖">
+            <el-table-column width="200px" prop="preview_url" label="預覽圖">
               <template slot-scope="scope">
                 <a target="_blank" :href="scope.row.video_url">
                   <img
@@ -43,29 +46,21 @@
                 </a>
               </template>
             </el-table-column>
+            <el-table-column width="100px" prop="duration" label="時長">
+              <template slot-scope="scope">
+                <el-tag size="medium" type="success" 
+                        v-text="transformHumanTime(scope.row.duration)">
+                </el-tag>
+              </template>
+            </el-table-column>
             <el-table-column
               prop="title"
               label="片名"
               width="500px"
             ></el-table-column>
-            <el-table-column prop="duration" label="時長">
-              <template slot-scope="scope">
-                <el-button icon="el-icon-timer" effect="dark">
-                  {{ transformHumanTime(scope.row.duration) }}
-                </el-button>
-              </template>
-            </el-table-column>
           </el-table>
         </el-tab-pane>
       </el-tabs>
-    </el-col>
-    <el-col :span="4">
-      <el-input
-        style="margin-bottom: 20px"
-        size="medium"
-        placeholder="搜寻"
-        suffix-icon="el-icon-search"
-      ></el-input>
     </el-col>
   </el-row>
 </template>
@@ -139,9 +134,13 @@ export default {
       this.getVideos();
     },
     // 跳轉頁碼
-    vidoePageClick(page) {
+    vidoePageChange(page) {
       this.videosCurrentPage = page - 1;
       this.getVideos();
+    },
+    videoSizeChange(val) {
+      this.videosLimit = val;
+      this.vidoePageChange(1);
     },
     // 將秒數替換成 時時:分分:秒秒 格式
     transformHumanTime(seconds) {
