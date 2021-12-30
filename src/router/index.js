@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AvgleCategoryView from '../views/AvgleCategoryView.vue'
 import AvgleSearchView from '../views/AvgleSearchView.vue'
+import DateTimePicker from '../views/DateTimePickerView.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/avgle-search',
     name: 'Avgle 影片搜尋',
     component: AvgleSearchView
+  },
+  {
+    path: '/date-time-picker',
+    name: '時間日期選擇器',
+    component: DateTimePicker
   },
 ]
 

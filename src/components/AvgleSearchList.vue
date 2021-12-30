@@ -16,10 +16,13 @@
         <el-pagination
           style="width: 100%"
           background
-          layout="prev, pager, next"
+          layout="prev, pager, next, sizes, jumper, total"
           :page-size="videosLimit"
+          :page-sizes="[8, 16, 24]"
           :total="videosTotal"
-          @current-change="vidoePageClick"
+          :current-page="videosCurrentPage"
+          @size-change="videoSizeChange"
+          @current-change="vidoePageChange"
           @prev-click="videosPrevClick"
           @next-click="videosNextClick"
         >
@@ -85,6 +88,9 @@ export default {
       if (val !== old_val && val !== "") {
         this.getVideos();
       }
+      if (val.length === 0) {
+          this.videos = [];
+      }
     },
   },
   methods: {
@@ -118,9 +124,13 @@ export default {
       this.getVideos();
     },
     // 跳轉頁碼
-    vidoePageClick(page) {
+    vidoePageChange(page) {
       this.videosCurrentPage = page - 1;
       this.getVideos();
+    },
+    videoSizeChange(val) {
+      this.videosLimit = val;
+      this.vidoePageChange(1);
     },
     // 將秒數替換成 時時:分分:秒秒 格式
     transformHumanTime(seconds) {
