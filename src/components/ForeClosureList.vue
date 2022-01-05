@@ -84,6 +84,7 @@
     <!-- 土地資料彈窗 -->
     <el-dialog title="土地详细" :visible.sync="dialogLandVisible">
       <el-descriptions v-for="land in dialogLandList"
+                       :key="land.ordno"
                        style="margin-top:25px;"
                        :column="3" 
                        size="mini" border>
@@ -120,7 +121,8 @@
 
     <!-- 建物資料彈窗 -->
     <el-dialog title="建物详细" :visible.sync="dialogHouseVisible">
-      <el-descriptions v-for="house in dialogHouseList"
+      <el-descriptions v-for="house in dialogHouseList" 
+                       :key="house.ordno"
                        :column="3" size="mini" border>
         <el-descriptions-item>
           <template slot="label">
@@ -163,6 +165,7 @@
     <!-- 動產 -->
     <el-dialog title="動產" :visible.sync="dialogMVVisible">
       <el-descriptions v-for="mv in dialogMVList" 
+                       :key="mv.ordno" 
                        :column="3" 
                        style="margin-top:25px;" 
                        size="mini" border>
