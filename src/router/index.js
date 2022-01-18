@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import AvgleCategoryView from '../views/AvgleCategoryView.vue'
 import AvgleSearchView from '../views/AvgleSearchView.vue'
 import ForeClosureListView from '../views/ForeClosureListView.vue'
+import HotVideoListView from '../views/HotVideoListView.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/foreclosure-search',
     name: '法拍搜尋',
     component: ForeClosureListView 
+  },
+  {
+    path: '/hotvideo-search',
+    name: '熱門影片',
+    component: HotVideoListView 
   }
 ]
 
